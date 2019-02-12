@@ -1,6 +1,7 @@
 # folder
 .vscode
 
+data/*
 experiments/*
 !experiments/pretrained_models
 experiments/pretrained_models/*

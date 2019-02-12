@@ -1,5 +1,5 @@
 {
-  "name": "debug_002_RRDB_ESRGAN_x4_DIV2K" //  please remove "debug_" during training
+  "name": "test_RRDB_ESRGAN_x4_DIV2K" //  please remove "debug_" during training
   , "use_tb_logger": true
   , "model":"srragan"
   , "scale": 4
@@ -9,12 +9,12 @@
     "train": {
       "name": "DIV2K"
       , "mode": "LRHR"
-      , "dataroot_HR": "/mnt/SSD/xtwang/BasicSR_datasets/DIV2K800/DIV2K800_sub.lmdb"
-      , "dataroot_LR": "/mnt/SSD/xtwang/BasicSR_datasets/DIV2K800/DIV2K800_sub_bicLRx4.lmdb"
+      , "dataroot_HR": "../data/fast/hr.lmdb"
+      , "dataroot_LR": "../data/fast/lr.lmdb"
       , "subset_file": null
       , "use_shuffle": true
       , "n_workers": 8
-      , "batch_size": 16
+      , "batch_size": 4
       , "HR_size": 128
       , "use_flip": true
       , "use_rot": true
@@ -22,15 +22,15 @@
     , "val": {
       "name": "val_set14_part"
       , "mode": "LRHR"
-      , "dataroot_HR": "/mnt/SSD/xtwang/BasicSR_datasets/val_set14_part/Set14"
-      , "dataroot_LR": "/mnt/SSD/xtwang/BasicSR_datasets/val_set14_part/Set14_bicLRx4"
+      , "dataroot_HR": "../data/fast/val_hr.lmdb"
+      , "dataroot_LR": "../data/fast/val_lr.lmdb"
     }
   }
 
   , "path": {
-    "root": "/home/xtwang/Projects/BasicSR"
+    "root": "/home/stoplinux/workspace/BasicSR"
     // , "resume_state": "../experiments/debug_002_RRDB_ESRGAN_x4_DIV2K/training_state/16.state"
-    , "pretrain_model_G": "../experiments/pretrained_models/RRDB_PSNR_x4.pth"
+    , "pretrain_model_G": "../experiments/pretrained_models/RRDB_ESRGAN_x4.pth"
   }
 
   , "network_G": {
