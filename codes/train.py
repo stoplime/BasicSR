@@ -137,6 +137,7 @@ def main():
                     # Save SR images for reference
                     save_img_path = os.path.join(img_dir, '{:s}_{:d}.png'.format(\
                         img_name, current_step))
+                    print("save_img_path", save_img_path)
                     util.save_img(sr_img, save_img_path)
 
                     # calculate PSNR

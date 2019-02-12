@@ -78,11 +78,11 @@
 
     , "manual_seed": 0
     , "niter": 5e5
-    , "val_freq": 5e3
+    , "val_freq": 200
   }
 
   , "logger": {
     "print_freq": 200
-    , "save_checkpoint_freq": 5e3
+    , "save_checkpoint_freq": 200
   }
 }
