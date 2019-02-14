@@ -9,8 +9,8 @@
     "train": {
       "name": "DIV2K"
       , "mode": "LRHR"
-      , "dataroot_HR": "../data/fast/hr.lmdb"
-      , "dataroot_LR": "../data/fast/lr.lmdb"
+      , "dataroot_HR": "../data/depthless/hr.lmdb"
+      , "dataroot_LR": "../data/depthless/lr.lmdb"
       , "subset_file": null
       , "use_shuffle": true
       , "n_workers": 8
@@ -22,15 +22,15 @@
     , "val": {
       "name": "val_set14_part"
       , "mode": "LRHR"
-      , "dataroot_HR": "../data/fast/val_hr.lmdb"
-      , "dataroot_LR": "../data/fast/val_lr.lmdb"
+      , "dataroot_HR": "../data/depthless/val_hr.lmdb"
+      , "dataroot_LR": "../data/depthless/val_lr.lmdb"
     }
   }
 
   , "path": {
     "root": "/home/stoplinux/workspace/BasicSR"
     // , "resume_state": "../experiments/debug_002_RRDB_ESRGAN_x4_DIV2K/training_state/16.state"
-    , "pretrain_model_G": "../experiments/pretrained_models/RRDB_ESRGAN_x4.pth"
+    // , "pretrain_model_G": "../experiments/pretrained_models/RRDB_ESRGAN_x4.pth"
   }
 
   , "network_G": {
