@@ -280,23 +280,17 @@ class VGGFeatureExtractor(nn.Module):
     def __init__(self,
                  feature_layer=34,
                  use_bn=False,
-                 use_input_norm=True,
+                 input_norm=None,
                  device=torch.device('cpu')):
         super(VGGFeatureExtractor, self).__init__()
         if use_bn:
             model = torchvision.models.vgg19_bn(pretrained=True)
         else:
             model = torchvision.models.vgg19(pretrained=True)
-        self.use_input_norm = use_input_norm
+        self.use_input_norm = input_norm != None
         if self.use_input_norm:
-            # mean = torch.Tensor([0.485, 0.456, 0.406, 0.456]).view(1, 4, 1, 1).to(device)
-            # std = torch.Tensor([0.229, 0.224, 0.225, 0.224]).view(1, 4, 1, 1).to(device)
-
-            mean = torch.Tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1).to(device)
-            # [0.485-1, 0.456-1, 0.406-1] if input in range [-1,1]
-            std = torch.Tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1).to(device)
-            # [0.229*2, 0.224*2, 0.225*2] if input in range [-1,1]
-
+            mean = torch.Tensor(input_norm['norm_mean']).view(1, len(input_norm['norm_mean']), 1, 1).to(device)
+            std = torch.Tensor(input_norm['norm_std']).view(1, len(input_norm['norm_std']), 1, 1).to(device)
             self.register_buffer('mean', mean)
             self.register_buffer('std', std)
         self.features = nn.Sequential(*list(model.features.children())[:(feature_layer + 1)])
@@ -313,15 +307,13 @@ class VGGFeatureExtractor(nn.Module):
 
 # Assume input range is [0, 1]
 class ResNet101FeatureExtractor(nn.Module):
-    def __init__(self, use_input_norm=True, device=torch.device('cpu')):
+    def __init__(self, input_norm=None, device=torch.device('cpu')):
         super(ResNet101FeatureExtractor, self).__init__()
         model = torchvision.models.resnet101(pretrained=True)
-        self.use_input_norm = use_input_norm
+        self.use_input_norm = input_norm != None
         if self.use_input_norm:
-            mean = torch.Tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1).to(device)
-            # [0.485-1, 0.456-1, 0.406-1] if input in range [-1,1]
-            std = torch.Tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1).to(device)
-            # [0.229*2, 0.224*2, 0.225*2] if input in range [-1,1]
+            mean = torch.Tensor(input_norm['norm_mean']).view(1, len(input_norm['norm_mean']), 1, 1).to(device)
+            std = torch.Tensor(input_norm['norm_std']).view(1, len(input_norm['norm_std']), 1, 1).to(device)
             self.register_buffer('mean', mean)
             self.register_buffer('std', std)
         self.features = nn.Sequential(*list(model.children())[:8])
