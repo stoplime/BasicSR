@@ -1,5 +1,5 @@
 {
-  "name": "Depthless_RRDB_ESRGAN_x4_NYUDepth" //  please remove "debug_" during training
+  "name": "Redless_RRDB_ESRGAN_x4_NYUDepth" //  please remove "debug_" during training
   , "use_tb_logger": true
   , "model":"srragan"
   , "scale": 4
@@ -9,8 +9,8 @@
     "train": {
       "name": "NYUDepth"
       , "mode": "LRHR"
-      , "dataroot_HR": "../data/depthless/hr.lmdb"
-      , "dataroot_LR": "../data/depthless/lr.lmdb"
+      , "dataroot_HR": "../data/redless/hr.lmdb"
+      , "dataroot_LR": "../data/redless/lr.lmdb"
       , "subset_file": null
       , "use_shuffle": true
       , "n_workers": 8
@@ -22,8 +22,8 @@
     , "val": {
       "name": "val_NYUDepth"
       , "mode": "LRHR"
-      , "dataroot_HR": "../data/depthless/val_hr.lmdb"
-      , "dataroot_LR": "../data/depthless/val_lr.lmdb"
+      , "dataroot_HR": "../data/redless/val_hr.lmdb"
+      , "dataroot_LR": "../data/redless/val_lr.lmdb"
     }
   }
 

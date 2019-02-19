@@ -9,10 +9,11 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.progress_bar import ProgressBar
 
 PATH = os.path.abspath(os.path.dirname(__file__))
-raw_data_path = '/home/stoplinux/workspace/STSRGAN/data'
-raw_subfolder = "depthless"
+raw_data_path = os.path.abspath(os.path.join(PATH, "..", "..", "data"))
+# raw_data_path = '/home/stoplinux/workspace/STSRGAN/data'
+raw_subfolder = "blueless"
 data_path = os.path.abspath(os.path.join(PATH, "..", "..", "data"))
-subfolder = "depthless"
+subfolder = raw_subfolder
 
 # configurations
 pathList = []
