@@ -274,6 +274,13 @@ class Discriminator_VGG_192(nn.Module):
 # Perceptual Network
 ####################
 
+def custom_vgg(use_bn=False, pretrained=True):
+    if use_bn:
+        model = torchvision.models.vgg19_bn(pretrained=True)
+    else:
+        model = torchvision.models.vgg19(pretrained=True)
+    model.features[0] = nn.Conv2d(4, 64, kernel_size=3, stride=1, padding=1)
+    return model
 
 # Assume input range is [0, 1]
 class VGGFeatureExtractor(nn.Module):
@@ -283,10 +290,7 @@ class VGGFeatureExtractor(nn.Module):
                  input_norm=None,
                  device=torch.device('cpu')):
         super(VGGFeatureExtractor, self).__init__()
-        if use_bn:
-            model = torchvision.models.vgg19_bn(pretrained=True)
-        else:
-            model = torchvision.models.vgg19(pretrained=True)
+        model = custom_vgg(use_bn=use_bn, pretrained=True)
         self.use_input_norm = input_norm != None
         if self.use_input_norm:
             mean = torch.Tensor(input_norm['norm_mean']).view(1, len(input_norm['norm_mean']), 1, 1).to(device)

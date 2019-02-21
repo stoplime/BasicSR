@@ -2,6 +2,7 @@
 .vscode
 
 data/*
+server/*
 experiments/*
 !experiments/pretrained_models
 experiments/pretrained_models/*
