@@ -25,6 +25,19 @@ class SRRaGANModel(BaseModel):
             self.netD.train()
         self.load()  # load G and D if needed
 
+        # optional finetuning
+        if opt['finetuning']['input_channel_change'] is not None:
+            # print("self.netD.module.features[0]", type(self.netD.module.features[0]))
+            # print(self.netD.module.features[0])
+            self.netG.module.model[0] = nn.Conv2d(opt['finetuning']['input_channel_change'], out_channels=64, kernel_size=3, stride=1, padding=1)
+            self.netD.module.features[0] = nn.Conv2d(opt['finetuning']['input_channel_change'], out_channels=64, kernel_size=3, stride=1, padding=1)
+        
+        if opt['finetuning']['output_channel_change'] is not None:
+            # print("self.netG.module.model[-1]", type(self.netG.module.model[-1]))
+            # print(self.netG.module.model[-1])
+            self.netG.module.model[-1] = nn.Conv2d(64, opt['finetuning']['output_channel_change'], kernel_size=3, stride=1, padding=1)
+
+
         # define losses, optimizer and scheduler
         if self.is_train:
             # G pixel loss

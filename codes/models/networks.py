@@ -146,7 +146,7 @@ def define_F(opt, use_bn=False):
         feature_layer = 49
     else:
         feature_layer = 34
-    netF = arch.VGGFeatureExtractor(feature_layer=feature_layer, use_bn=use_bn, \
+    netF = arch.VGGFeatureExtractor(in_nc=opt['network_G']['in_nc'], feature_layer=feature_layer, use_bn=use_bn, \
         input_norm=opt['network_G']['norm_values'], device=device)
     # netF = arch.ResNet101FeatureExtractor(input_norm=opt['network_G']['norm_values'], device=device)
     if gpu_ids:

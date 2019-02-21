@@ -30,7 +30,7 @@
   , "path": {
     "root": "/home/stoplinux/workspace/BasicSR"
     // , "resume_state": "../experiments/debug_002_RRDB_ESRGAN_x4_DIV2K/training_state/16.state"
-    // , "pretrain_model_G": "../experiments/pretrained_models/RRDB_ESRGAN_x4.pth"
+    , "pretrain_model_G": "../experiments/pretrained_models/RRDB_ESRGAN_x4.pth"
   }
 
   , "network_G": {
@@ -39,8 +39,8 @@
     , "mode": "CNA"
     , "nf": 64
     , "nb": 23
-    , "in_nc": 4
-    , "out_nc": 4
+    , "in_nc": 3
+    , "out_nc": 3
     , "gc": 32
     , "group": 1
     // The average of the data to normalize assuming its from 0 to 1
@@ -57,7 +57,11 @@
     , "act_type": "leakyrelu"
     , "mode": "CNA"
     , "nf": 64
-    , "in_nc": 4
+    , "in_nc": 3
+  }
+  , "finetuning": {
+    "input_channel_change": 4
+    , "output_channel_change": 4
   }
 
   , "train": {
